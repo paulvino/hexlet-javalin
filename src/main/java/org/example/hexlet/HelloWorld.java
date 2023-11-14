@@ -22,18 +22,29 @@ public class HelloWorld {
 //            ctx.result("POST /users");
 //        });
 
-        app.get("/hello", ctx -> {
-            var name = ctx.queryParam("name");
-//            if (name != null) {
-//                ctx.result("Hello, " + name + "!");
-//            } else {
-//                ctx.result("Hello, World!");
-//            }
-//            Замена кода выше (5 строк) тернарным оператором
-            var msg = (name != null) ? "Hello, " + name + "!" : "Hello, World!";
-//            ctx.result(msg); // обычный вывод, без форматирования
-            ctx.contentType("text/html"); // вывод с форматированием в html
-            ctx.result("<h1>" + msg + "</h1>");
+//        app.get("/hello", ctx -> {
+//            var name = ctx.queryParam("name");
+////            if (name != null) {
+////                ctx.result("Hello, " + name + "!");
+////            } else {
+////                ctx.result("Hello, World!");
+////            }
+////            Замена кода выше (5 строк) тернарным оператором
+//            var msg = (name != null) ? "Hello, " + name + "!" : "Hello, World!";
+////            ctx.result(msg); // обычный вывод, без форматирования
+//            ctx.contentType("text/html"); // вывод с форматированием в html
+//            ctx.result("<h1>" + msg + "</h1>");
+//        });
+
+//        // Обратите внимание, что id - это не обязательно число
+//        app.get("/courses/{courseId}/lessons/{id}", ctx -> {
+//            ctx.result("Course ID: " + ctx.pathParam("courseId"));
+//            ctx.result("Lesson ID: " + ctx.pathParam("id"));
+//        });
+
+        app.get("/users/{id}/post/{postId}", ctx -> {
+            ctx.result("User ID: " + ctx.pathParam("id"));
+            ctx.result("Post ID: " + ctx.pathParam("postId"));
         });
 
         app.start(7070);
