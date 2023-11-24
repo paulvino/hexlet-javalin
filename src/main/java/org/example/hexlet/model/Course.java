@@ -1,4 +1,3 @@
-// Путь src/org/example/hexlet/model/Course.java
 package org.example.hexlet.model;
 
 import lombok.Getter;

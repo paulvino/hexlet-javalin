@@ -1,4 +1,3 @@
-// Путь src/org/example/hexlet/dto/courses/CoursesPage.java
 package org.example.hexlet.dto.courses;
 
 import java.util.List;

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class HelloWorld {
-
     private static final List<Map<String, Object>> DATA = Data.getData();
 
     public static void main(String[] args) {
@@ -20,8 +19,6 @@ public class HelloWorld {
         var app = Javalin.create(config -> {
             config.plugins.enableDevLogging();
         });
-
-
 
         app.get("/users", ctx -> {
             ctx.result("GET /users");
@@ -39,7 +36,12 @@ public class HelloWorld {
             ctx.result("<h1>" + msg + "</h1>");
         });
 
-        app.get("/", ctx -> ctx.render("index.jte"));
+        app.get("/users/{id}/post/{postId}", ctx -> {
+            ctx.result("User ID: " + ctx.pathParam("id"));
+            ctx.result("Post ID: " + ctx.pathParam("postId"));
+        });
+
+        app.get("/", ctx -> ctx.render("greeting.jte"));
 
         app.get("/courses/{id}", ctx -> {
             var id = ctx.pathParam("id");
