@@ -2,10 +2,13 @@ package org.example.hexlet;
 
 import io.javalin.Javalin;
 import io.javalin.http.NotFoundResponse;
+import org.apache.commons.text.StringEscapeUtils;
+import org.owasp.html.HtmlPolicyBuilder;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.dto.courses.Data;
 import org.example.hexlet.model.Course;
+import org.owasp.html.PolicyFactory;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,6 +29,20 @@ public class HelloWorld {
 
         app.post("/users", ctx -> {
             ctx.result("POST /users");
+        });
+
+        app.get("/users/{id}", ctx -> {
+            var id = ctx.pathParam("id");
+            var escapedId = StringEscapeUtils.escapeHtml4(id);
+            PolicyFactory policy = new HtmlPolicyBuilder()
+                    .allowElements("a")
+                    .allowUrlProtocols("http")
+                    .allowAttributes("href").onElements("a")
+                    .requireRelNofollowOnLinks()
+                    .toFactory();
+            String safeHTML = policy.sanitize(escapedId);
+            ctx.contentType("text/html");
+            ctx.result(safeHTML);
         });
 
         app.get("/hello", ctx -> {

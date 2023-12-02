@@ -3,7 +3,7 @@
 
 @template.layout.page(
     content = @`
-        <h2>${page.getCourse().getName()}</h2>
+        <h1>${page.getCourse().getName()}</h1>
         <p>${page.getCourse().getDescription()}</p>
     `,
     footer = @`
