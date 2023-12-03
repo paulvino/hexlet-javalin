@@ -1,6 +1,7 @@
 @import gg.jte.Content
 @param Content content
 @param Content footer = null
+@param Content header = null
 
 <!doctype html>
 <html lang="en">
@@ -15,5 +16,6 @@
         </p>
         ${footer}
         ${content}
+        ${header}
     </body>
 </html>

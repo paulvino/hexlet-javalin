@@ -10,6 +10,7 @@ import org.example.hexlet.dto.courses.Data;
 import org.example.hexlet.model.Course;
 import org.owasp.html.PolicyFactory;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,18 @@ public class HelloWorld {
         });
 
         app.get("/courses", ctx -> {
-            var coursesPage = new CoursesPage(Data.getCoursesList(DATA));
+            var term = ctx.queryParam("term");
+            List<Course> courses;
+
+            if (term != null) {
+                courses = Data.getCoursesList(DATA).stream()
+                        .filter(c -> c.getName().contains(term) || c.getDescription().contains(term))
+                        .toList();
+            } else {
+                courses = Data.getCoursesList(DATA);
+            }
+
+            var coursesPage = new CoursesPage(courses, term);
             ctx.render("courses/index.jte", Collections.singletonMap("page", coursesPage));
         });
 
