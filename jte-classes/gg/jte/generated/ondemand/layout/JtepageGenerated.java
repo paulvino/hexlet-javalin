@@ -6,13 +6,13 @@ public final class JtepageGenerated {
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, Content content, Content footer, Content header) {
 		jteOutput.writeContent("\n<!doctype html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n        <title>Hexlet Javalin Example</title>\n    </head>\n    <body>\n        <p>\n            <h1><a href=\"/\">Main</a> <a href=\"/courses\">Courses</a></h1>\n        </p>\n        ");
 		jteOutput.setContext("body", null);
-		jteOutput.writeUserContent(footer);
+		jteOutput.writeUserContent(header);
 		jteOutput.writeContent("\n        ");
 		jteOutput.setContext("body", null);
 		jteOutput.writeUserContent(content);
 		jteOutput.writeContent("\n        ");
 		jteOutput.setContext("body", null);
-		jteOutput.writeUserContent(header);
+		jteOutput.writeUserContent(footer);
 		jteOutput.writeContent("\n    </body>\n</html>\n");
 	}
 	public static void renderMap(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {

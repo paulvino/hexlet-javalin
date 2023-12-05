@@ -3,6 +3,10 @@ package org.example.hexlet;
 import io.javalin.Javalin;
 import io.javalin.http.NotFoundResponse;
 import org.apache.commons.text.StringEscapeUtils;
+import org.example.hexlet.dto.users.UsersPage;
+import org.example.hexlet.model.User;
+import org.example.hexlet.repository.CourseRepository;
+import org.example.hexlet.repository.UserRepository;
 import org.owasp.html.HtmlPolicyBuilder;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
@@ -24,12 +28,35 @@ public class HelloWorld {
             config.plugins.enableDevLogging();
         });
 
-        app.get("/users", ctx -> {
-            ctx.result("GET /users");
+        app.get("/hello", ctx -> {
+            var name = ctx.queryParam("name");
+            var msg = (name != null) ? "Hello, " + name + "!" : "Hello, World!";
+//            ctx.result(msg); // обычный вывод, без форматирования
+            ctx.contentType("text/html"); // вывод с форматированием в html
+            ctx.result("<h1>" + msg + "</h1>");
+        });
+
+        app.get("/", ctx -> ctx.render("greeting.jte"));
+
+        app.get("/users/build", ctx -> {
+            ctx.render("users/build.jte");
         });
 
         app.post("/users", ctx -> {
-            ctx.result("POST /users");
+            var name = ctx.formParam("name").trim();
+            var email = ctx.formParam("email").trim().toLowerCase();
+            var password = ctx.formParam("password");
+            var passwordConfirmation = ctx.formParam("passwordConfirmation");
+
+            var user = new User(name, email, password);
+            UserRepository.save(user);
+            ctx.redirect("/users");
+        });
+
+        app.get("/users", ctx -> {
+            List<User> users = UserRepository.getEntities();
+            UsersPage page = new UsersPage(users);
+            ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
 
         app.get("/users/{id}", ctx -> {
@@ -46,20 +73,38 @@ public class HelloWorld {
             ctx.result(safeHTML);
         });
 
-        app.get("/hello", ctx -> {
-            var name = ctx.queryParam("name");
-            var msg = (name != null) ? "Hello, " + name + "!" : "Hello, World!";
-//            ctx.result(msg); // обычный вывод, без форматирования
-            ctx.contentType("text/html"); // вывод с форматированием в html
-            ctx.result("<h1>" + msg + "</h1>");
-        });
-
         app.get("/users/{id}/post/{postId}", ctx -> {
             ctx.result("User ID: " + ctx.pathParam("id"));
             ctx.result("Post ID: " + ctx.pathParam("postId"));
         });
 
-        app.get("/", ctx -> ctx.render("greeting.jte"));
+
+        app.get("/courses/build", ctx -> {
+            ctx.render("courses/build.jte");
+        });
+
+        app.post("/courses", ctx -> {
+            var name = ctx.formParam("name").trim();
+            var description = ctx.formParam("description").trim();
+
+            var course = new Course(name, description);
+            CourseRepository.save(course);
+            ctx.redirect("/courses");
+        });
+
+        app.get("/courses", ctx -> {
+            var term = ctx.queryParam("term");
+            List<Course> courses;
+
+            if (term != null) {
+                courses = CourseRepository.search(term);
+            } else {
+                courses = CourseRepository.getEntities();
+            }
+
+            var page = new CoursesPage(courses, term);
+            ctx.render("courses/index.jte", Collections.singletonMap("page", page));
+        });
 
         app.get("/courses/{id}", ctx -> {
             var id = ctx.pathParam("id");
@@ -73,22 +118,6 @@ public class HelloWorld {
             var page = new CoursePage(course);
 
             ctx.render("courses/show.jte", Collections.singletonMap("page", page));
-        });
-
-        app.get("/courses", ctx -> {
-            var term = ctx.queryParam("term");
-            List<Course> courses;
-
-            if (term != null) {
-                courses = Data.getCoursesList(DATA).stream()
-                        .filter(c -> c.getName().contains(term) || c.getDescription().contains(term))
-                        .toList();
-            } else {
-                courses = Data.getCoursesList(DATA);
-            }
-
-            var coursesPage = new CoursesPage(courses, term);
-            ctx.render("courses/index.jte", Collections.singletonMap("page", coursesPage));
         });
 
         app.start(7070);
