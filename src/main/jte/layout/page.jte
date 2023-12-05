@@ -14,8 +14,8 @@
         <p>
             <h1><a href="/">Main</a> <a href="/courses">Courses</a></h1>
         </p>
-        ${footer}
-        ${content}
         ${header}
+        ${content}
+        ${footer}
     </body>
 </html>
