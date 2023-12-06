@@ -4,6 +4,10 @@
 @template.layout.page(
     header = @`
         <h1>Users</h1>
+        <form action="/users" method="get">
+            <input type="search" name="term" value="${page.getTerm()}">
+            <input type="submit" value="Search">
+        </form>
     `,
 
     content = @`

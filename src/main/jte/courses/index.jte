@@ -2,7 +2,6 @@
 @param CoursesPage page
 
 @template.layout.page(
-
     header = @`
         <h1>Courses</h1>
         <form action="/courses" method="get">

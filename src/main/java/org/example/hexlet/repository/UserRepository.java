@@ -16,7 +16,7 @@ public class UserRepository {
 
     public static List<User> search(String term) {
         var users = entities.stream()
-                .filter(entity -> entity.getName().startsWith(term))
+                .filter(entity -> entity.getName().toLowerCase().startsWith(term.toLowerCase()))
                 .toList();
         return users;
     }

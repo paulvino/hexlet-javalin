@@ -2,7 +2,7 @@ package gg.jte.generated.ondemand.courses;
 import org.example.hexlet.dto.courses.CoursesPage;
 public final class JteindexGenerated {
 	public static final String JTE_NAME = "courses/index.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,1,1,3,3,10,10,11,11,12,12,12,13,13,13,14,14,15,15,15,15,17,17,17,17,20,20,20,20,20,20,20,20,20,23,23,23,24,24,24,1,1,1,1};
+	public static final int[] JTE_LINE_INFO = {0,0,1,1,1,3,3,9,9,10,10,11,11,11,12,12,12,13,13,14,14,14,14,16,16,16,16,19,19,19,19,19,19,19,19,19,22,22,22,23,23,23,1,1,1,1};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, CoursesPage page) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {

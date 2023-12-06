@@ -11,4 +11,5 @@ import lombok.Getter;
 @Getter
 public class UsersPage {
     private List<User> users;
+    private String term;
 }

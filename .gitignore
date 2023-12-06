@@ -11,7 +11,7 @@ build/
 *.class
 jte-classes
 *.settings
-
+.jteroot
 **/logs/
 
 ### IntelliJ IDEA ###

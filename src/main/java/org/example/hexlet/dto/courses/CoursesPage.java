@@ -10,6 +10,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class CoursesPage {
-    public List<Course> courses;
-    public String term;
+    private List<Course> courses;
+    private String term;
 }

@@ -1,18 +1,32 @@
-<!doctype html>
-<html lang="en">
-<form action="/courses" method="post">
-    <div>
-        <label>
-            Name
-            <input type="text" name="name" />
-        </label>
-    </div>
-    <div>
-        <label>
-            Description
-            <input type="text" required name="description" />
-        </label>
-    </div>
-    <input type="submit" value="Done!" />
-</form>
-</html>
+@import org.example.hexlet.dto.courses.BuildCoursePage
+@param BuildCoursePage page
+
+@template.layout.page(
+    content = @`
+        @if(page.getErrors() != null)
+            <ul>
+                @for(var validator : page.getErrors().values())
+                    @for(var error : validator)
+                        <li>${error.getMessage()}</li>
+                    @endfor
+                @endfor
+            </ul>
+        @endif
+
+        <form action="/courses" method="post">
+            <div>
+                <label>
+                    Name
+                    <input type="text" name="name" value="${page.getName()}"/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Description
+                    <input type="text" required name="description" value="${page.getDescription()}"/>
+                </label>
+            </div>
+            <input type="submit" value="Done!" />
+        </form>
+    `
+)

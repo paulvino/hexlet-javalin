@@ -12,7 +12,7 @@
     </head>
     <body>
         <p>
-            <h1><a href="/">Main</a> <a href="/courses">Courses</a></h1>
+        <h1><a href="/">Main</a> <a href="/users">Users</a> <a href="/courses">Courses</a> </h1>
         </p>
         ${header}
         ${content}
