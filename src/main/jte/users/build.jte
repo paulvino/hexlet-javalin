@@ -1,4 +1,4 @@
-@import org.example.hexlet.NamedRoutes
+@import org.example.hexlet.util.NamedRoutes
 @import org.example.hexlet.dto.users.BuildUserPage
 @param BuildUserPage page
 
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <label>
-                Email
+                E-mail
                 <input type="email" required name="email" value="${page.getEmail()}" />
                 </label>
             </div>

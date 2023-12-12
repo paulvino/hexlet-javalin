@@ -1,5 +1,5 @@
 package gg.jte.generated.ondemand.courses;
-import org.example.hexlet.NamedRoutes;
+import org.example.hexlet.util.NamedRoutes;
 import org.example.hexlet.dto.courses.CoursesPage;
 public final class JteindexGenerated {
 	public static final String JTE_NAME = "courses/index.jte";

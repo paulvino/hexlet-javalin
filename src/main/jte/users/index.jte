@@ -1,13 +1,10 @@
-@import org.example.hexlet.NamedRoutes
+@import org.example.hexlet.util.NamedRoutes
 @import org.example.hexlet.dto.users.UsersPage
 @param UsersPage page
 
 @template.layout.page(
     header = @`
         <h1>Users</h1>
-        <form action="${NamedRoutes.usersPath()}" method="get">
-            <input type="search" name="term" value="${page.getTerm()}">
-            <input type="submit" value="Search">
         </form>
     `,
 

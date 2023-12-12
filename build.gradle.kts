@@ -21,6 +21,7 @@ dependencies {
     implementation("io.javalin:javalin:5.6.3")
     implementation("org.slf4j:slf4j-simple:2.0.7")
     implementation("io.javalin:javalin-rendering:5.6.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     implementation("gg.jte:jte:3.1.4")
     implementation("org.projectlombok:lombok:1.18.30")
     implementation ("com.github.javafaker:javafaker:1.0.2")
