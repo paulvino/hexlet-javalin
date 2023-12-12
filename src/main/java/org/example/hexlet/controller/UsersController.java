@@ -76,15 +76,9 @@ public class UsersController {
             var email = ctx.formParamAsClass("email", String.class)
                     .check(value -> value.contains("@"), "E-mail isn't looks like one")
                     .get();
-//            var passwordConfirmation = ctx.formParam("passwordConfirmation");
-//            var password = ctx.formParamAsClass("password", String.class)
-//                    .check(value -> value.equals(passwordConfirmation), "Passwords are not the same")
-//                    .check(value -> value.length() >= 6, "Password is too short (less than 6 symbols)")
-//                    .get();
 
             user.setName(name);
             user.setEmail(email);
-//            user.setPassword(password);
 
             ctx.redirect(NamedRoutes.usersPath());
         } catch (ValidationException e) {
@@ -101,60 +95,3 @@ public class UsersController {
         ctx.redirect(NamedRoutes.usersPath());
     }
 }
-
-//        app.get(NamedRoutes.buildUserPath(), ctx -> {
-//            var page = new BuildUserPage();
-//            ctx.render("users/build.jte", Collections.singletonMap("page", page));
-//        });
-//
-//        app.post(NamedRoutes.usersPath(), ctx -> {
-//            var name = ctx.formParam("name").trim();
-//            var email = ctx.formParam("email").trim().toLowerCase();
-//
-//            try {
-//                var passwordConfirmation = ctx.formParam("passwordConfirmation");
-//                var password = ctx.formParamAsClass("password", String.class)
-//                        .check(value -> value.equals(passwordConfirmation), "Passwords are not the same")
-//                        .check(value -> value.length() >= 6, "Password is too short (less than 6 symbols)")
-//                        .get();
-//                var user = new User(name, email, password);
-//                UserRepository.save(user);
-//                ctx.redirect("/users");
-//            } catch (ValidationException e) {
-//                var page = new BuildUserPage(name, email, e.getErrors());
-//                ctx.render("users/build.jte", Collections.singletonMap("page", page));
-//            }
-//        });
-//
-////        app.get(NamedRoutes.usersPath(), ctx -> {
-////            var term = ctx.queryParam("term");
-////            List<User> users;
-////
-////            if (term != null) {
-////                users = UserRepository.search(term);
-////            } else {
-////                users = UserRepository.getEntities();
-////            }
-////
-////            var page = new UsersPage(users, term);
-////            ctx.render("users/index.jte", Collections.singletonMap("page", page));
-////        });
-//
-//        app.get(NamedRoutes.userPath("{id}"), ctx -> {
-//            var id = ctx.pathParam("id");
-//            var escapedId = StringEscapeUtils.escapeHtml4(id);
-//            PolicyFactory policy = new HtmlPolicyBuilder()
-//                    .allowElements("a")
-//                    .allowUrlProtocols("http")
-//                    .allowAttributes("href").onElements("a")
-//                    .requireRelNofollowOnLinks()
-//                    .toFactory();
-//            String safeHTML = policy.sanitize(escapedId);
-//            ctx.contentType("text/html");
-//            ctx.result(safeHTML);
-//        });
-//
-//        app.get("/users/{id}/post/{postId}", ctx -> {
-//            ctx.result("User ID: " + ctx.pathParam("id"));
-//            ctx.result("Post ID: " + ctx.pathParam("postId"));
-//        });
