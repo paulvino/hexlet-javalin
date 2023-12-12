@@ -3,8 +3,10 @@ package org.example.hexlet;
 import io.javalin.Javalin;
 import org.example.hexlet.controller.CoursesController;
 import org.example.hexlet.controller.UsersController;
+import org.example.hexlet.dto.MainPage;
 import org.example.hexlet.dto.courses.Data;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,12 @@ public class HelloWorld {
             ctx.result("<h1>" + msg + "</h1>");
         });
 
-        app.get("/", ctx -> ctx.render("greeting.jte"));
+        app.get("/", ctx -> {
+            var visited = Boolean.valueOf(ctx.cookie("visited"));
+            var page = new MainPage(visited);
+            ctx.render("index.jte", Collections.singletonMap("page", page));
+            ctx.cookie("visited", String.valueOf(true));
+        });
 
         app.get("/users", UsersController::index);
         app.get("/users/build", UsersController::build);

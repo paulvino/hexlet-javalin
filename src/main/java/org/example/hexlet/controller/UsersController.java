@@ -5,6 +5,7 @@ import java.util.Collections;
 import io.javalin.validation.ValidationException;
 import org.apache.commons.text.StringEscapeUtils;
 import org.example.hexlet.dto.users.BuildUserPage;
+import org.example.hexlet.dto.users.EditUserPage;
 import org.example.hexlet.util.NamedRoutes;
 import org.example.hexlet.dto.users.UserPage;
 import org.example.hexlet.dto.users.UsersPage;
@@ -58,31 +59,39 @@ public class UsersController {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         var user = UserRepository.find(id)
                 .orElseThrow(() -> new NotFoundResponse("Entity with id = " + id + " not found"));
-        var page = new UserPage(user);
+        var page = new EditUserPage(user.getName(), user.getEmail(), null);
         ctx.render("users/edit.jte", Collections.singletonMap("page", page));
     }
 
     public static void update(Context ctx) {
         var id = ctx.pathParamAsClass("id", Long.class).get();
 
-        var name = ctx.formParam("name").trim();
-        var email = ctx.formParam("email").trim().toLowerCase();
+        var user = UserRepository.find(id)
+                .orElseThrow(() -> new NotFoundResponse("User with id = " + id + " not found"));
+
         try {
-            var passwordConfirmation = ctx.formParam("passwordConfirmation");
-            var password = ctx.formParamAsClass("password", String.class)
-                    .check(value -> value.equals(passwordConfirmation), "Passwords are not the same")
-                    .check(value -> value.length() >= 6, "Password is too short (less than 6 symbols)")
+            var name = ctx.formParamAsClass("name", String.class)
+                    .check(value -> value.length() > 2, "The name cannot be shorter than 2 characters")
                     .get();
-            var user = UserRepository.find(id)
-                    .orElseThrow(() -> new NotFoundResponse("Entity with id = " + id + " not found"));
+            var email = ctx.formParamAsClass("email", String.class)
+                    .check(value -> value.contains("@"), "E-mail isn't looks like one")
+                    .get();
+//            var passwordConfirmation = ctx.formParam("passwordConfirmation");
+//            var password = ctx.formParamAsClass("password", String.class)
+//                    .check(value -> value.equals(passwordConfirmation), "Passwords are not the same")
+//                    .check(value -> value.length() >= 6, "Password is too short (less than 6 symbols)")
+//                    .get();
+
             user.setName(name);
             user.setEmail(email);
-            user.setPassword(password);
-            UserRepository.save(user);
+//            user.setPassword(password);
+
             ctx.redirect(NamedRoutes.usersPath());
         } catch (ValidationException e) {
-            var page = new BuildUserPage(name, email, e.getErrors());
-            ctx.render("users/build.jte", Collections.singletonMap("page", page));
+            var name = ctx.formParam("name");
+            var email = ctx.formParam("email");
+            var page = new EditUserPage(name, email, e.getErrors());
+            ctx.render("users/edit.jte", Collections.singletonMap("page", page));
         }
     }
 
