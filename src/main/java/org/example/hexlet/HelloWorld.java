@@ -2,6 +2,7 @@ package org.example.hexlet;
 
 import io.javalin.Javalin;
 import org.example.hexlet.controller.CoursesController;
+import org.example.hexlet.controller.SessionsController;
 import org.example.hexlet.controller.UsersController;
 import org.example.hexlet.dto.MainPage;
 import org.example.hexlet.util.NamedRoutes;
@@ -12,23 +13,17 @@ public class HelloWorld {
 
     public static void main(String[] args) {
 
-        var app = Javalin.create(config -> {
-            config.plugins.enableDevLogging();
-        });
+        var app = Javalin.create(config -> config.plugins.enableDevLogging());
 
-        app.get("/hello", ctx -> {
-            var name = ctx.queryParam("name");
-            var msg = (name != null) ? "Hello, " + name + "!" : "Hello, World!";
-//            ctx.result(msg); // обычный вывод, без форматирования
-            ctx.contentType("text/html"); // вывод с форматированием в html
-            ctx.result("<h1>" + msg + "</h1>");
-        });
+        app.get(NamedRoutes.mainPath(), ctx -> {
+//            var visited = Boolean.valueOf(ctx.cookie("visited"));
+//            var page = new MainPage(visited);
+//            ctx.render("index.jte", Collections.singletonMap("page", page));
+//            ctx.render("index.jte");
+//            ctx.cookie("visited", String.valueOf(true));
 
-        app.get("/", ctx -> {
-            var visited = Boolean.valueOf(ctx.cookie("visited"));
-            var page = new MainPage(visited);
+            var page = new MainPage(ctx.sessionAttribute("currentUser"));
             ctx.render("index.jte", Collections.singletonMap("page", page));
-            ctx.cookie("visited", String.valueOf(true));
         });
 
         app.get(NamedRoutes.usersPath(), UsersController::index);
@@ -46,6 +41,13 @@ public class HelloWorld {
         app.get("/courses/{id}/edit", CoursesController::edit);
         app.patch(NamedRoutes.coursePath("{id}"), CoursesController::update);
         app.delete(NamedRoutes.coursesPath(), CoursesController::destroy);
+
+        // отображение формы логина
+        app.get(NamedRoutes.buildSessionPath(), SessionsController::build);
+        // процесс логина
+        app.post(NamedRoutes.sessionPath(), SessionsController::create);
+        // процесс выхода из аккаунта
+        app.delete(NamedRoutes.sessionPath(), SessionsController::destroy);
 
         app.start(7070);
     }

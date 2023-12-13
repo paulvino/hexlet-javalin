@@ -3,10 +3,10 @@ import gg.jte.Content;
 import org.example.hexlet.util.NamedRoutes;
 public final class JtepageGenerated {
 	public static final String JTE_NAME = "layout/page.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,2,2,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,17,17,17,18,18,18,19,19,19,22,22,22,2,3,4,4,4,4};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,2,2,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,17,17,17,18,18,18,19,19,19,21,21,21,21,21,21,21,21,21,25,25,25,2,3,4,4,4,4};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, Content content, Content footer, Content header) {
-		jteOutput.writeContent("\n<!doctype html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n        <title>Hexlet Javalin Example</title>\n    </head>\n    <body>\n        <p>\n        <h1><a href=\"/\">Main</a> <a");
-		var __jte_html_attribute_0 = NamedRoutes.usersPath();
+		jteOutput.writeContent("\n<!doctype html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n        <title>Hexlet Javalin Example</title>\n    </head>\n    <body>\n        <p>\n        <h1><a");
+		var __jte_html_attribute_0 = NamedRoutes.mainPath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_0)) {
 			jteOutput.writeContent(" href=\"");
 			jteOutput.setContext("a", "href");
@@ -14,12 +14,21 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Users</a> <a");
-		var __jte_html_attribute_1 = NamedRoutes.coursesPath();
+		jteOutput.writeContent(">Main</a> <a");
+		var __jte_html_attribute_1 = NamedRoutes.usersPath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_1)) {
 			jteOutput.writeContent(" href=\"");
 			jteOutput.setContext("a", "href");
 			jteOutput.writeUserContent(__jte_html_attribute_1);
+			jteOutput.setContext("a", null);
+			jteOutput.writeContent("\"");
+		}
+		jteOutput.writeContent(">Users</a> <a");
+		var __jte_html_attribute_2 = NamedRoutes.coursesPath();
+		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_2)) {
+			jteOutput.writeContent(" href=\"");
+			jteOutput.setContext("a", "href");
+			jteOutput.writeUserContent(__jte_html_attribute_2);
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
@@ -32,7 +41,16 @@ public final class JtepageGenerated {
 		jteOutput.writeContent("\n        ");
 		jteOutput.setContext("body", null);
 		jteOutput.writeUserContent(footer);
-		jteOutput.writeContent("\n    </body>\n</html>\n");
+		jteOutput.writeContent("\n        <p>\n        <a");
+		var __jte_html_attribute_3 = NamedRoutes.buildUserPath();
+		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
+			jteOutput.writeContent(" href=\"");
+			jteOutput.setContext("a", "href");
+			jteOutput.writeUserContent(__jte_html_attribute_3);
+			jteOutput.setContext("a", null);
+			jteOutput.writeContent("\"");
+		}
+		jteOutput.writeContent(">New user</a>\n        </p>\n    </body>\n</html>\n");
 	}
 	public static void renderMap(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {
 		Content content = (Content)params.get("content");

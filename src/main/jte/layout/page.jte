@@ -13,10 +13,13 @@
     </head>
     <body>
         <p>
-        <h1><a href="/">Main</a> <a href="${NamedRoutes.usersPath()}">Users</a> <a href="${NamedRoutes.coursesPath()}">Courses</a> </h1>
+        <h1><a href="${NamedRoutes.mainPath()}">Main</a> <a href="${NamedRoutes.usersPath()}">Users</a> <a href="${NamedRoutes.coursesPath()}">Courses</a> </h1>
         </p>
         ${header}
         ${content}
         ${footer}
+        <p>
+        <a href="${NamedRoutes.buildUserPath()}">New user</a>
+        </p>
     </body>
 </html>
