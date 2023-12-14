@@ -3,21 +3,21 @@
 @param CoursesPage page
 
 @template.layout.page(
+    page = page,
     content = @`
         <h1>Courses List</h1>
-        <form action="${NamedRoutes.coursesPath()}" method="get">
-            <input type="search" name="term" value="${page.getTerm()}">
-            <input type="submit" value="Search">
+        <form class="navbar-form" action="${NamedRoutes.coursesPath()}" method="get">
+            <div class="form-group">
+                <input class="form-control" type="search" name="term" placeholder="Enter course name" value="${page.getTerm()}">
+                <button type="submit" class="btn btn-default">Search</button>
+            </div>
         </form>
+
         @for(var course : page.getCourses())
             <div>
                 <h2><a href="${NamedRoutes.coursePath(course.getId())}">${course.getName()}</a></h2>
-            <p>${course.getDescription()}</p>
+                <p>${course.getDescription()}</p>
             </div>
         @endfor
-    `,
-
-    footer = @`
-        <a href="https://github.com/paulvino/hexlet-javalin">Project on GitHub</a>
     `
 )

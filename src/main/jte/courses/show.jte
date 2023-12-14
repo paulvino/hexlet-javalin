@@ -5,8 +5,5 @@
     content = @`
         <h2>${page.getCourse().getName()}</h2>
         <p>${page.getCourse().getDescription()}</p>
-    `,
-    footer = @`
-        <a href="https://github.com/paulvino/hexlet-javalin">Project on GitHub</a>
     `
 )

@@ -9,7 +9,9 @@
                 <ul>
                     @for(var validator : page.getErrors().values())
                         @for(var error : validator)
-                            <li>${error.getMessage()}</li>
+                            <div class="alert alert-danger" role="alert">
+                                ${error.getMessage()}
+                            </div>
                         @endfor
                     @endfor
                 </ul>
@@ -24,35 +26,25 @@
                     </h3>
                 </label>
             </div>
-            <div>
-                <label>
-                    Name
-                    <input type="text" name="name" value="${page.getName()}" />
-                </label>
+            <div class="form-group">
+                <label for="InputName">Name</label>
+                <input type="text" class="form-control" placeholder="Name" name="name" value="${page.getName()}" />
+            </div>
+            <div class="form-group">
+                <label for="Email">E-mail</label>
+                <input type="email" class="form-control" placeholder="Email" required name="email" value="${page.getEmail()}" />
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" placeholder="Password" required name="password" />
             </div>
             <div>
-                <label>
-                    E-mail
-                    <input type="email" required name="email" value="${page.getEmail()}" />
-                </label>
+                <label for="PasswordConfirmation">Password confirmation</label>
+                <input type="password" class="form-control" placeholder="PasswordConfirmation" required name="passwordConfirmation" />
             </div>
             <div>
-                <label>
-                    Password
-                    <input type="password" required name="password" />
-                </label>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Done!</button>
             </div>
-            <div>
-                <label>
-                    Password confirmation
-                    <input type="password" required name="passwordConfirmation" />
-                </label>
-            </div>
-        <input type="submit" value="Save" />
     </form>
-    `,
-
-    footer = @`
-        <a href="https://github.com/paulvino/hexlet-javalin">Project on GitHub</a>
     `
 )

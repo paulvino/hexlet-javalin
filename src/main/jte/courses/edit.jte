@@ -5,23 +5,17 @@
 @template.layout.page(
     content = @`
         <form action="${NamedRoutes.coursesPath()}" method="post">
-            <div>
-                <label>
-                    Name
-                    <input type="text" name="name" value="${page.getCourse().getName()}"/>
-                </label>
+            <div class="form-group">
+                <label for="InputName">Name</label>
+                <input type="text" class="form-control" placeholder="Name" name="name" value="${page.getCourse().getName()}"/>
+            </div>
+            <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <input type="text" class="form-control" placeholder="Description" required name="description" value="${page.getCourse().getDescription()}"/>
             </div>
             <div>
-                <label>
-                    Description
-                    <input type="text" required name="description" value="${page.getCourse().getDescription()}"/>
-                </label>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Done!</button>
             </div>
-            <input type="submit" value="Done!" />
     </form>
-    `,
-
-    footer = @`
-        <a href="https://github.com/paulvino/hexlet-javalin">Project on GitHub</a>
     `
 )

@@ -8,26 +8,26 @@
             <ul>
                 @for(var validator : page.getErrors().values())
                     @for(var error : validator)
-                        <li>${error.getMessage()}</li>
+                        <div class="alert alert-danger" role="alert">
+                            ${error.getMessage()}
+                        </div>
                     @endfor
                 @endfor
             </ul>
         @endif
 
         <form action="${NamedRoutes.coursesPath()}" method="post">
-            <div>
-                <label>
-                    Name
-                    <input type="text" name="name" value="${page.getName()}"/>
-                </label>
+            <div class="form-group">
+                <label for="CourseName">Course name</label>
+                <input type="text" class="form-control" placeholder="Course Name" name="name" value="${page.getName()}" />
+            </div>
+            <div class="form-group">
+                <label for="InputDescription">Description</label>
+                <input type="text" class="form-control" placeholder="Description" required name="description" value="${page.getDescription()}" />
             </div>
             <div>
-                <label>
-                    Description
-                    <input type="text" required name="description" value="${page.getDescription()}"/>
-                </label>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Done!</button>
             </div>
-            <input type="submit" value="Done!" />
         </form>
     `
 )

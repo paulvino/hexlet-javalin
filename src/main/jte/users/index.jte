@@ -1,11 +1,11 @@
-@import org.example.hexlet.util.NamedRoutes
 @import org.example.hexlet.dto.users.UsersPage
 @param UsersPage page
 
 @template.layout.page(
+    page = page,
+
     header = @`
-        <h1>Users</h1>
-        </form>
+        <h1>Users List</h1>
     `,
 
     content = @`
@@ -13,9 +13,5 @@
             <h2>${user.getName()}</h2>
             <p>${user.getEmail()}</p>
         @endfor
-    `,
-
-    footer = @`
-        <a href="https://github.com/paulvino/hexlet-javalin">Project on GitHub</a>
     `
 )

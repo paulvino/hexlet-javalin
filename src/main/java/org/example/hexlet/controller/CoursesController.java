@@ -18,15 +18,10 @@ public class CoursesController {
         var courses = CourseRepository.getEntities();
         var term = ctx.queryParam("term");
 
-//        if (term != null) {
-//            courses = CourseRepository.search(term);
-//        } else {
-//            courses = CourseRepository.getEntities();
-//        }
         courses = term != null ? CourseRepository.search(term) : CourseRepository.getEntities();
 
         var page = new CoursesPage(courses, term);
-
+        page.setFlash(ctx.consumeSessionAttribute("flash"));
         ctx.render("courses/index.jte", Collections.singletonMap("page", page));
     }
 
@@ -56,6 +51,7 @@ public class CoursesController {
                     .get();
             var course = new Course(courseName, courseDescription);
             CourseRepository.save(course);
+            ctx.sessionAttribute("flash", "Course has been created!");
             ctx.redirect(NamedRoutes.coursesPath());
         } catch (ValidationException e) {
             var page = new BuildCoursePage(name, description, e.getErrors());
@@ -90,57 +86,4 @@ public class CoursesController {
         CourseRepository.delete(id);
         ctx.redirect(NamedRoutes.coursesPath());
     }
-
-//    app.get(NamedRoutes.buildCoursePath(), ctx -> {
-//        var page = new BuildCoursePage();
-//        ctx.render("courses/build.jte", Collections.singletonMap("page", page));
-//    });
-//
-//        app.post(NamedRoutes.coursesPath(), ctx -> {
-//        var name = ctx.formParam("name").trim();
-//        var description = ctx.formParam("description").trim();
-//
-//        try {
-//            var courseName = ctx.formParamAsClass("name", String.class)
-//                    .check(value -> value.length() > 2, "Name of course is too short (less than 3 symbols)")
-//                    .get();
-//            var courseDescription = ctx.formParamAsClass("description", String.class)
-//                    .check(value -> value.length() >= 10, "Description is too short (less than 10 symbols)")
-//                    .get();
-//            var course = new Course(courseName, courseDescription);
-//            CourseRepository.save(course);
-//            ctx.redirect("/courses");
-//        } catch (ValidationException e) {
-//            var page = new BuildCoursePage(name, description, e.getErrors());
-//            ctx.render("courses/build.jte", Collections.singletonMap("page", page));
-//        }
-//    });
-//
-//        app.get(NamedRoutes.coursesPath(), ctx -> {
-//        var term = ctx.queryParam("term");
-//        List<Course> courses;
-//
-//        if (term != null) {
-//            courses = CourseRepository.search(term);
-//        } else {
-//            courses = CourseRepository.getEntities();
-//        }
-//
-//        var page = new CoursesPage(courses, term);
-//        ctx.render("courses/index.jte", Collections.singletonMap("page", page));
-//    });
-//
-//        app.get(NamedRoutes.coursePath("{id}"), ctx -> {
-//        var id = ctx.pathParam("id");
-//
-//        var courseMap = Data.getCourse(Long.parseLong(id));
-//        if (courseMap == null) {
-//            throw new NotFoundResponse("Course not found");
-//        }
-//
-//        var course = new Course(courseMap);
-//        var page = new CoursePage(course);
-//
-//        ctx.render("courses/show.jte", Collections.singletonMap("page", page));
-//    });
 }

@@ -7,11 +7,11 @@
         <h2>${page.getUser().getName()}</h2>
         <p>${page.getUser().getEmail()}</p>
         <div>
-            <a href="${NamedRoutes.editUserPath(page.getUser().getId())}">Edit user</a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="${NamedRoutes.editUserPath(page.getUser().getId())}">Edit user</a>
+                </li>
+            </ul>
         </div>
-    `,
-
-    footer = @`
-        <a href="https://github.com/paulvino/hexlet-javalin">Project on GitHub</a>
     `
 )
