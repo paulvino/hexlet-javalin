@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS courses, users;
+DROP TABLE IF EXISTS courses;
 
 CREATE TABLE courses (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -6,7 +6,7 @@ CREATE TABLE courses (
     description TEXT
 );
 
-DROP TABLE IF EXISTS cars, users;
+DROP TABLE IF EXISTS cars;
 
 CREATE TABLE cars (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -14,7 +14,7 @@ CREATE TABLE cars (
     model VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS cars, courses;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
