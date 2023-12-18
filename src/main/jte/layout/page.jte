@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="${NamedRoutes.coursesPath()}">Courses</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${NamedRoutes.carsPath()}">Cars</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -50,6 +53,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${NamedRoutes.buildCoursePath()}">Add new course</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${NamedRoutes.buildCarPath()}">Add new car</a>
                 </li>
             </ul>
         </div>

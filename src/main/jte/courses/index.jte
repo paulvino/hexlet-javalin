@@ -13,11 +13,15 @@
             </div>
         </form>
 
-        @for(var course : page.getCourses())
-            <div>
-                <h2><a href="${NamedRoutes.coursePath(course.getId())}">${course.getName()}</a></h2>
-                <p>${course.getDescription()}</p>
-            </div>
-        @endfor
+        @if(page.getCourses().isEmpty())
+            <p>Courses list is empty</p>
+        @else
+            @for(var course : page.getCourses())
+                <div>
+                    <h2><a href="${NamedRoutes.coursePath(course.getId())}">${course.getName()}</a></h2>
+                    <p>${course.getDescription()}</p>
+                </div>
+            @endfor
+        @endif
     `
 )

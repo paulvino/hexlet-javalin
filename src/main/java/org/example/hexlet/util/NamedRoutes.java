@@ -53,4 +53,21 @@ public class NamedRoutes {
     public static String coursePath(String id) {
         return coursesPath() + "/" + id;
     }
+
+    public static String buildCarPath() {
+        return "/cars/build";
+    }
+
+    public static String carsPath() {
+        return "/cars";
+    }
+
+    public static String carPath(Long id) {
+        return carPath(String.valueOf(id));
+    }
+
+    public static String carPath(String id) {
+        return "/cars/" + id;
+    }
 }
+

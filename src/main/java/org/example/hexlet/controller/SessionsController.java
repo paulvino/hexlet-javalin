@@ -5,12 +5,14 @@ import org.example.hexlet.model.User;
 import org.example.hexlet.repository.UserRepository;
 import org.example.hexlet.util.NamedRoutes;
 
+import java.sql.SQLException;
+
 public class SessionsController {
     public static void build(Context ctx) {
         ctx.render("sessions/build.jte");
     }
 
-    public static void create(Context ctx) {
+    public static void create(Context ctx) throws SQLException {
         var name = ctx.formParam("name");
         var email = ctx.formParam("email").trim().toLowerCase();
         var password = ctx.formParam("password");
