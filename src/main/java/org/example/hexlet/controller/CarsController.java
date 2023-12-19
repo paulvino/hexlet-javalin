@@ -7,6 +7,7 @@ import org.example.hexlet.dto.cars.CarPage;
 import org.example.hexlet.dto.cars.CarsPage;
 import org.example.hexlet.model.Car;
 import org.example.hexlet.repository.CarRepository;
+import org.example.hexlet.repository.CourseRepository;
 import org.example.hexlet.util.NamedRoutes;
 
 import io.javalin.http.Context;
@@ -16,7 +17,10 @@ public class CarsController {
 
     public static void index(Context ctx) throws SQLException {
         var cars = CarRepository.getEntities();
-        var page = new CarsPage(cars);
+        var term = ctx.queryParam("term");
+        cars = term != null ? CarRepository.search(term) : CarRepository.getEntities();
+
+        var page = new CarsPage(cars, term);
         page.setFlash(ctx.consumeSessionAttribute("flash"));
         ctx.render("cars/index.jte", Collections.singletonMap("page", page));
     }

@@ -15,7 +15,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Main</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\"");
+		jteOutput.writeContent(">Стартовая страница</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\"");
 		var __jte_html_attribute_1 = NamedRoutes.usersPath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_1)) {
 			jteOutput.writeContent(" href=\"");
@@ -24,7 +24,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Users</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\"");
+		jteOutput.writeContent(">Пользователи</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\"");
 		var __jte_html_attribute_2 = NamedRoutes.coursesPath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_2)) {
 			jteOutput.writeContent(" href=\"");
@@ -33,7 +33,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Courses</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\"");
+		jteOutput.writeContent(">Курсы</a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\"");
 		var __jte_html_attribute_3 = NamedRoutes.carsPath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
 			jteOutput.writeContent(" href=\"");
@@ -42,7 +42,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Cars</a>\n                        </li>\n                    </ul>\n                </div>\n            </nav>\n        </div>\n        <p>\n            ");
+		jteOutput.writeContent(">Машины</a>\n                        </li>\n                    </ul>\n                </div>\n            </nav>\n        </div>\n        <p>\n            ");
 		if (page != null && page.getFlash() != null) {
 			jteOutput.writeContent("\n                <div class=\"alert alert-success\" role=\"alert\">\n                ");
 			jteOutput.setContext("div", null);
@@ -64,7 +64,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Add new user</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\"");
+		jteOutput.writeContent(">Добавить пользователя</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\"");
 		var __jte_html_attribute_5 = NamedRoutes.buildCoursePath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_5)) {
 			jteOutput.writeContent(" href=\"");
@@ -73,7 +73,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Add new course</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\"");
+		jteOutput.writeContent(">Добавить курс</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\"");
 		var __jte_html_attribute_6 = NamedRoutes.buildCarPath();
 		if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_6)) {
 			jteOutput.writeContent(" href=\"");
@@ -82,7 +82,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(">Add new car</a>\n                </li>\n            </ul>\n        </div>\n        <a href=\"https://github.com/paulvino/hexlet-javalin\" class=\"badge badge-info\">Project on GitHub</a>\n    </body>\n</html>\n");
+		jteOutput.writeContent(">Добавить машину</a>\n                </li>\n            </ul>\n        </div>\n        <a href=\"https://github.com/paulvino/hexlet-javalin\" class=\"badge badge-info\">Project on GitHub</a>\n    </body>\n</html>\n");
 	}
 	public static void renderMap(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {
 		Content content = (Content)params.get("content");

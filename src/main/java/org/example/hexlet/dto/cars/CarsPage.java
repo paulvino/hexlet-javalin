@@ -11,5 +11,6 @@ import java.util.List;
 @Getter
 public class CarsPage extends BasePage {
     private List<Car> cars;
+    private String term;
 }
 

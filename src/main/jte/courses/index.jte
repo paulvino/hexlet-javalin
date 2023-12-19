@@ -5,16 +5,17 @@
 @template.layout.page(
     page = page,
     content = @`
-        <h1>Courses List</h1>
+        <h1>Список курсов</h1>
         <form class="navbar-form" action="${NamedRoutes.coursesPath()}" method="get">
             <div class="form-group">
-                <input class="form-control" type="search" name="term" placeholder="Enter course name" value="${page.getTerm()}">
-                <button type="submit" class="btn btn-default">Search</button>
+                <input class="form-control" type="search" name="term" placeholder="Для поиска введите название курса" value="${page.getTerm()}">
+                <button type="submit" class="btn btn-default">Поиск</button>
             </div>
         </form>
 
         @if(page.getCourses().isEmpty())
-            <p>Courses list is empty</p>
+            <p>Список курсов пока пуст</p>
+            <p>По кнопке ниже можно это исправить!</p>
         @else
             @for(var course : page.getCourses())
                 <div>

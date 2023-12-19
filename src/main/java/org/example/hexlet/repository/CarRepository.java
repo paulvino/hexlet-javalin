@@ -1,6 +1,7 @@
 package org.example.hexlet.repository;
 
 import org.example.hexlet.model.Car;
+import org.example.hexlet.model.Course;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +25,14 @@ public class CarRepository extends BaseRepository {
                 throw new SQLException("DB have not returned an id after saving an entity");
             }
         }
+    }
+
+    public static List<Car> search(String term) {
+        List<Car> entities = new ArrayList<>();
+        var cars = entities.stream()
+                .filter(entity -> entity.getName().toLowerCase().startsWith(term.toLowerCase()))
+                .toList();
+        return cars;
     }
 
     public static Optional<Car> find(Long id) throws SQLException {

@@ -12,5 +12,5 @@ import lombok.Getter;
 @Getter
 public class UsersPage extends BasePage {
     private List<User> users;
-//    private String term;
+    private String term;
 }

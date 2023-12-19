@@ -7,6 +7,7 @@ import io.javalin.validation.ValidationException;
 import org.apache.commons.text.StringEscapeUtils;
 import org.example.hexlet.dto.users.BuildUserPage;
 import org.example.hexlet.dto.users.EditUserPage;
+import org.example.hexlet.repository.CarRepository;
 import org.example.hexlet.util.NamedRoutes;
 import org.example.hexlet.dto.users.UserPage;
 import org.example.hexlet.dto.users.UsersPage;
@@ -19,7 +20,10 @@ import io.javalin.http.NotFoundResponse;
 public class UsersController {
     public static void index(Context ctx) throws SQLException {
         var users = UserRepository.getEntities();
-        var page = new UsersPage(users);
+        var term = ctx.queryParam("term");
+        users = term != null ? UserRepository.search(term) : UserRepository.getEntities();
+
+        var page = new UsersPage(users, term);
         page.setFlash(ctx.consumeSessionAttribute("flash"));
         ctx.render("users/index.jte", Collections.singletonMap("page", page));
     }

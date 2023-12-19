@@ -22,16 +22,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="${NamedRoutes.mainPath()}">Main</a>
+                            <a class="nav-link" href="${NamedRoutes.mainPath()}">Стартовая страница</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${NamedRoutes.usersPath()}">Users</a>
+                            <a class="nav-link" href="${NamedRoutes.usersPath()}">Пользователи</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${NamedRoutes.coursesPath()}">Courses</a>
+                            <a class="nav-link" href="${NamedRoutes.coursesPath()}">Курсы</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${NamedRoutes.carsPath()}">Cars</a>
+                            <a class="nav-link" href="${NamedRoutes.carsPath()}">Машины</a>
                         </li>
                     </ul>
                 </div>
@@ -49,13 +49,13 @@
         <div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="${NamedRoutes.buildUserPath()}">Add new user</a>
+                    <a class="nav-link" href="${NamedRoutes.buildUserPath()}">Добавить пользователя</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${NamedRoutes.buildCoursePath()}">Add new course</a>
+                    <a class="nav-link" href="${NamedRoutes.buildCoursePath()}">Добавить курс</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${NamedRoutes.buildCarPath()}">Add new car</a>
+                    <a class="nav-link" href="${NamedRoutes.buildCarPath()}">Добавить машину</a>
                 </li>
             </ul>
         </div>
