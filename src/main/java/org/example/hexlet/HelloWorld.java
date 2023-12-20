@@ -12,9 +12,12 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+//import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -39,8 +42,9 @@ public class HelloWorld {
         var dataSource = new HikariDataSource(hikariConfig);
         var url = HelloWorld.class.getClassLoader().getResource("schema.sql");
         var file = new File(url.getFile());
-        var sql = Files.lines(file.toPath())
-                .collect(Collectors.joining("\n"));
+//        var sql = Files.lines(file.toPath())
+//                .collect(Collectors.joining("\n"));
+        var sql = readResourceFile("schema.sql");
 
         try (var connection = dataSource.getConnection();
                 var statement = connection.createStatement()) {
@@ -90,5 +94,13 @@ public class HelloWorld {
         });
 
         return app;
+    }
+
+    private static String readResourceFile(String fileName) throws IOException {
+        var inputStream = HelloWorld.class.getClassLoader().getResourceAsStream(fileName);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            return reader.lines().collect(Collectors.joining("\n"));
+        }
+
     }
 }
